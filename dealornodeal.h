@@ -91,6 +91,14 @@ public:
 		//cout << "In game destructor" << endl;
 	}
 
+	game(game& rhs) {
+
+		for (int i = 0; i < 26; i++) {
+
+			this->_s[i] = rhs._s[i];
+		}
+	}
+
 	friend ostream& operator<<(ostream& o, game g) {
 
 		for (int i = 0; i < 26; i++) {
@@ -105,6 +113,7 @@ public:
 	void shuffleArray();
 	void revealCases(int num, int myCase, int roundNum);
 	void showRemainingCases(int myCase);
+	//void showRemainingValues(game t, int myCase);
 	bool generateOffer(int myCase);
 	bool playRounds(int myCase, bool isInteractive = false);
 	void playGame(bool isInteractive = false);
