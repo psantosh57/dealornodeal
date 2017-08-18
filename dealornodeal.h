@@ -26,7 +26,7 @@ public:
 
 	friend ostream& operator<<(ostream& o, suitcase s) {
 
-		o << s._money << endl;
+		o << s._money;
 
 		return o;
 	}
@@ -113,7 +113,7 @@ public:
 	void shuffleArray();
 	void revealCases(int num, int myCase, int roundNum);
 	void showRemainingCases(int myCase);
-	//void showRemainingValues(game t, int myCase);
+	void showRemainingValues(int myCase);
 	bool generateOffer(int myCase);
 	bool playRounds(int myCase, bool isInteractive = false);
 	void playGame(bool isInteractive = false);

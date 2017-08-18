@@ -10,7 +10,5 @@ int main() {
 
 	g.playGame();
 
-	cout << game::ifInteractive << endl;
-
 	return 0;
 }
