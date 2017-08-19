@@ -9,6 +9,8 @@ public:
 		//cout << "In suitcase constructor " << endl;
 	}
 
+	suitcase(double d) :_money(d) {};
+
 	~suitcase() {
 
 		//cout << "In suitcase destructor" << endl;
@@ -64,6 +66,17 @@ public:
 		div._money = this->_money / rhs;
 
 		return div._money;
+	}
+
+	double operator*(double rhs) {
+
+		double d = 0;
+
+		suitcase mult(d);
+
+		mult._money = this->_money * rhs;
+
+		return mult._money;
 	}
 
 	

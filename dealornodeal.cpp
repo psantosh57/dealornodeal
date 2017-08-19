@@ -1,6 +1,6 @@
 #include "dealornodeal.h"
 
-bool game::ifInteractive = true;
+bool game::ifInteractive = false;
 
 void game::shuffleArray() {
 
@@ -41,6 +41,13 @@ void game::revealCases(int num, int myCase, int round) {
 
 			cout << "Pick a suitcase between 1 to 26!" << endl;
 			cin >> ind;
+
+			while (ind < 1 || ind > 26) {
+
+				cout << "Please select a suitcase between 1 and 26" << endl;
+				cin >> ind;
+
+			}
 
 			while (this->_s[ind - 1] == -1 || ind == myCase) {
 
@@ -113,40 +120,46 @@ bool game::generateOffer(int myCase) {
 
 	int sum = 0;
 	int count = 0;
-	bool ifAccepted = false;
+	double factor = 0;
+	int ifAccepted = 0;
 
 	for (int i = 0; i < 26; i++) {
 
-		if (this->_s[i] != -1 && (i+1) != myCase) {
-
-			//cout << "Adding to sum, index "<< i << " element " << this->_s[i] << endl;
-			sum = this->_s[i] + sum;
-			//cout << "Sum now is " << sum << endl;
-		}
-		else {
+		if (this->_s[i] == -1) {
 
 			count++;
 		}
 	}
 
-	sum = sum / (26 - count);
-	sum = sum / 3;
+	count = (26 - count);
 
-	//cout << "Current suitcase status - " << endl;
+	factor = (double) 1 / count;
 
-	//this->showRemainingCases(myCase);
+	for (int j = 0; j < 26; j++) {
 
-	//cout << *this << endl;
+		if (this->_s[j] != -1) {
 
-	cout << "The bank is offering you $" << sum << "!" << endl;
+			sum = sum + (this->_s[j] * factor);
+		}
+
+	}
+
+	cout << "The bank is offering you $" << sum << " !" << endl;
 
 	if (game::ifInteractive) {
 
 		cout << "Do you accept this offer? Yes = 1, No = 0 " << endl;
 		cin >> ifAccepted;
+
+		while (ifAccepted != 1 && ifAccepted != 0) {
+
+			cout << "Please input 1 for Yes or 0 for No" << endl;
+			cin >> ifAccepted;
+		}
+
 		if (ifAccepted) {
 
-			cout << "Congratulations! You have won $" << sum << "!" << endl;
+			cout << "Congratulations! You have won $" << sum << " !" << endl;
 		}
 
 	}
@@ -165,7 +178,7 @@ bool game::playRounds( int myCase, bool isInteractive) {
 		this->revealCases(i, myCase, round);
 		if (this->generateOffer(myCase)) {
 
-			cout << "Your case had $" << this->_s[myCase - 1] << "!" << endl;
+			cout << "Your case had $" << this->_s[myCase - 1] << " !" << endl;
 			gameOver = true;
 			return true;
 		}
@@ -182,7 +195,7 @@ bool game::playRounds( int myCase, bool isInteractive) {
 		this->revealCases(1, myCase, round);
 		if (this->generateOffer(myCase)) {
 
-			cout << "Your case had $" << this->_s[myCase - 1] << "!" << endl;
+			cout << "Your case had $" << this->_s[myCase - 1] << " !" << endl;
 			gameOver = true;
 			return true;
 		}
@@ -213,11 +226,17 @@ void game::playGame(bool isInteractive) {
 
 		a.shuffleArray();
 
-		cout << "Pick a suitcase!" << endl;
+		cout << "Pick a suitcase between 1-26!" << endl;
 		cin >> mySuitcase;
-		cout << "Your suitcase is number " << mySuitcase << "!" << endl;
 
-		cout << a._s[mySuitcase - 1] << endl;
+		while (mySuitcase < 1 || mySuitcase > 26) {
+
+			cout << "Please select a suitcase between 1 and 26" << endl;
+			cin >> mySuitcase;
+
+		}
+
+		cout << "Your suitcase is number " << mySuitcase << " !" << endl;
 
 		bool theEnd = a.playRounds(mySuitcase);
 
@@ -229,7 +248,8 @@ void game::playGame(bool isInteractive) {
 		else {
 
 			cout << "Let's see what's in your case!" << endl;
-			cout << "Your case had $" << a._s[mySuitcase - 1] << "!!" << endl;
+			cout << "Your case had $" << a._s[mySuitcase - 1] << " !!" << endl;
+			cout << "Thanks for playing!" << endl;
 		}
 
 	}
