@@ -1,6 +1,6 @@
 #include "dealornodeal.h"
 
-bool game::ifInteractive = false;
+bool game::ifInteractive = true;
 
 void game::shuffleArray() {
 
@@ -215,16 +215,14 @@ void game::playGame(bool isInteractive) {
 
 	int numIter = 0;
 
-	suitcase suitArr[26] = { 0, 1, 5, 10, 25, 50, 75, 100, 200, 300, 400, 500, 750, 1000, 5000, 10000, 25000, 50000, 75000, 100000, 200000, 300000, 400000, 500000, 750000, 1000000 };
-
-	game a(suitArr);
-
 	srand(time(NULL));
 	int mySuitcase = -1;
 
 	if (ifInteractive) {
 
-		a.shuffleArray();
+		//a.shuffleArray();
+
+		shuffleArray();
 
 		cout << "Pick a suitcase between 1-26!" << endl;
 		cin >> mySuitcase;
@@ -238,7 +236,8 @@ void game::playGame(bool isInteractive) {
 
 		cout << "Your suitcase is number " << mySuitcase << " !" << endl;
 
-		bool theEnd = a.playRounds(mySuitcase);
+		//bool theEnd = a.playRounds(mySuitcase);
+		bool theEnd = playRounds(mySuitcase);
 
 		if (theEnd) {
 			
@@ -248,12 +247,17 @@ void game::playGame(bool isInteractive) {
 		else {
 
 			cout << "Let's see what's in your case!" << endl;
-			cout << "Your case had $" << a._s[mySuitcase - 1] << " !!" << endl;
+			//cout << "Your case had $" << a._s[mySuitcase - 1] << " !!" << endl;
+			cout << "Your case had $" << _s[mySuitcase - 1] << " !!" << endl;
 			cout << "Thanks for playing!" << endl;
 		}
 
 	}
 	else {
+
+		suitcase suitArr[26] = { 0, 1, 5, 10, 25, 50, 75, 100, 200, 300, 400, 500, 750, 1000, 5000, 10000, 25000, 50000, 75000, 100000, 200000, 300000, 400000, 500000, 750000, 1000000 };
+
+		game a(suitArr);
 
 		do {
 
