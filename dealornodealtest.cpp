@@ -8,6 +8,7 @@ int main() {
 
 	game g(suitArr);
 
+	//Game type is interactive or non-interactive based on the static variable game::ifInteractive initialized at the beginning of dealornodeal.cpp
 	g.playGame();
 
 	return 0;

@@ -4,21 +4,13 @@ class suitcase {
 
 public:
 
-	suitcase(int m = 0) :_money(m) {
-
-		//cout << "In suitcase constructor " << endl;
-	}
+	suitcase(int m = 0) :_money(m) {}
 
 	suitcase(double d) :_money(d) {};
 
-	~suitcase() {
-
-		//cout << "In suitcase destructor" << endl;
-	}
+	~suitcase() {}
 
 	suitcase& operator=(int rhs) {
-
-		//cout << "In = operator" << endl;
 
 		this->_money = rhs;
 
@@ -44,8 +36,6 @@ public:
 	}
 
 	operator int() const {
-
-		//cout << "In int()" << endl;
 
 		return this->_money;
 	}
@@ -92,17 +82,13 @@ public:
 
 	game(suitcase l[]) :_s{ 0 } {
 
-		//cout << "In game constructor" << endl;
 		for (int i = 0; i < 26; i++) {
 
 			_s[i] = l[i];
 		}
 	}
 
-	~game() {
-
-		//cout << "In game destructor" << endl;
-	}
+	~game() {}
 
 	game(game& rhs) {
 
@@ -135,6 +121,5 @@ public:
 
 private:
 
-	//list_of_suitcases _list;
 	suitcase _s[26];
 };
